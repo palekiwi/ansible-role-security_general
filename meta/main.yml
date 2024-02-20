@@ -1,0 +1,20 @@
+---
+dependencies: []
+
+collections:
+  - ansible.posix
+  - community.general
+
+galaxy_info:
+  role_name: security_general
+  author: palekiwi
+  description: Set up general security on a machine.
+  license: "license (BSD, MIT)"
+  min_ansible_version: "2.10"
+  platforms:
+    - name: EL
+      versions:
+        - "9"
+  galaxy_tags:
+    - security
+    - selinux

@@ -1,0 +1,4 @@
+---
+- name: Import SELinux tasks for distribution.
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"
+  when: "ansible_facts['os_family'] == 'RedHat'"

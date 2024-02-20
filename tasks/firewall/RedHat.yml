@@ -1,0 +1,54 @@
+---
+- name: Ensure firewalld is installed.
+  ansible.builtin.dnf:
+    name: firewalld
+    state: present
+
+- name: Set up zones.
+  ansible.posix.firewalld:
+    zone: "{{ item.zone }}"
+    state: "{{ item.state }}"
+    permanent: true
+  loop: "{{ security_general_firewalld_zones }}"
+
+- name: Ensure firewalld is started.
+  ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: Configure services with firewalld.
+  ansible.posix.firewalld:
+    state: "{{ item.state }}"
+    service: "{{ item.service }}"
+    zone: "{{ item.zone }}"
+    immediate: true
+    permanent: true
+  loop: "{{ security_general_firewalld_services }}"
+
+- name: Configure open ports with firewalld.
+  ansible.posix.firewalld:
+    state: "{{ item.state }}"
+    port: "{{ item.port }}"
+    zone: "{{ item.zone }}"
+    immediate: true
+    permanent: true
+  loop: "{{ security_general_firewalld_ports }}"
+
+- name: Configure interfaces with firewalld.
+  ansible.posix.firewalld:
+    state: "{{ item.state }}"
+    interface: "{{ item.interface }}"
+    zone: "{{ item.zone }}"
+    immediate: true
+    permanent: true
+  loop: "{{ security_general_firewalld_interfaces }}"
+
+- name: Configure sources with firewalld.
+  ansible.posix.firewalld:
+    state: "{{ item.state }}"
+    source: "{{ item.source }}"
+    zone: "{{ item.zone }}"
+    immediate: true
+    permanent: true
+  loop: "{{ security_general_firewalld_sources }}"

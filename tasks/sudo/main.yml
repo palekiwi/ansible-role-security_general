@@ -1,0 +1,17 @@
+---
+- name: Ensure there exists a user named {{ security_general_ansible_user }}.
+  ansible.builtin.user:
+    name: "{{ security_general_ansible_user }}"
+    state: present
+
+- name: Add sudo rights for deployment user {{ security_general_ansible_user }}.
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/{{ security_general_ansible_user }}
+    create: true
+    mode: "0640"
+    owner: root
+    group: root
+    regexp: '^{{ security_general_ansible_user }}'
+    line: '{{ security_general_ansible_user }} ALL=(ALL) NOPASSWD: ALL'
+    state: present
+    validate: 'visudo -cf %s'

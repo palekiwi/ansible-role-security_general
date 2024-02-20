@@ -1,0 +1,20 @@
+---
+# HELP ansible.posix.firewalld
+# TYPE []{zone: string, state: string}
+security_general_firewalld_zones: []
+
+# HELP ansible.posix.firewalld
+# TYPE []{state: string, port: string, zone: string}
+security_general_firewalld_ports: []
+
+# HELP ansible.posix.firewalld
+# TYPE []{state: string, service: string, zone: string}
+security_general_firewalld_services: []
+
+# HELP ansible.posix.firewalld
+# TYPE []{state: string, source: string, zone: string}
+security_general_firewalld_sources: []
+
+# HELP ansible.posix.firewalld
+# TYPE []{state: string, interface: string, zone: string}
+security_general_firewalld_interfaces: []

@@ -1,0 +1,10 @@
+---
+- name: Remove unused packages.
+  ansible.builtin.package:
+    name:
+      - nano
+      - sendmail
+    state: absent
+
+- name: Include distro specific tasks.
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"

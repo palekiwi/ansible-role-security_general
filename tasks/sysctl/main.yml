@@ -1,0 +1,8 @@
+---
+- name: Ensure unpriviledged_port_start is configured.
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_unprivileged_port_start
+    value: "{{ security_general_ip_unpriviledged_port_start }}"
+    sysctl_set: true
+    state: present
+    reload: true

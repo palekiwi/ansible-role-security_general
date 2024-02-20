@@ -1,0 +1,3 @@
+---
+- name: Import firewall task for distribution.
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"

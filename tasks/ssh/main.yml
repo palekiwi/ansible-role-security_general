@@ -1,0 +1,26 @@
+---
+- name: Set authorized key from file.
+  ansible.posix.authorized_key:
+    user: "{{ item.user }}"
+    state: present
+    key: "{{ item.key }}"
+  loop: "{{ security_general_authorized_keys }}"
+
+- name: Update ssh configuration.
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    validate: 'sshd -t -f %s'
+  loop:
+    - regexp: "^PasswordAuthentication"
+      line: "PasswordAuthentication no"
+    - regexp: "^PermitRootLogin"
+      line: "PermitRootLogin no"
+    - regexp: "^Port"
+      line: "Port {{ security_general_ssh_port }}"
+  notify: Restart ssh.
+
+- name: Flush handlers.
+  ansible.builtin.meta: flush_handlers

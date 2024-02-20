@@ -1,0 +1,3 @@
+---
+- name: Import fail2ban setup tasks for distribution.
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"

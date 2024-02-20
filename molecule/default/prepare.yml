@@ -1,0 +1,8 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+  tasks:
+    - name: Ensure epel repo is available.
+      ansible.builtin.include_role:
+        name: palekiwi.epel

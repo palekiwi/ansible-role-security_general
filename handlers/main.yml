@@ -1,0 +1,6 @@
+---
+# handlers file for server_security
+- name: Restart ssh.
+  ansible.builtin.service:
+    name: sshd
+    state: restarted

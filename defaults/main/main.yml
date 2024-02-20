@@ -1,0 +1,28 @@
+---
+# HELP
+# TYPE string
+security_general_ansible_user: ansible
+
+# HELP ansible.posix.authorized_key
+# TYPE []{user: string, key: string}
+security_general_authorized_keys: []
+
+# HELP ansible.posix.sysctl
+# TYPE number | string
+security_general_ip_unpriviledged_port_start: 1024
+
+# HELP ssh port to listen on
+# TYPE number | string
+security_general_ssh_port: 22
+  #
+# HELP community.general.seport
+# TYPE []{ports: string | []string, proto: string, setype: string, state: string}
+security_general_selinux_ports: []
+
+# HELP
+# TYPE bool
+security_general_automatic_updates: true
+
+# HELP install fail2ban
+# TYPE bool
+security_general_use_fail2ban: true

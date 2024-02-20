@@ -1,0 +1,23 @@
+---
+# tasks file for server_security
+- name: Import sudo tasks.
+  ansible.builtin.import_tasks: sudo/main.yml
+
+- name: Import SELinux tasks.
+  ansible.builtin.import_tasks: selinux/main.yml
+
+- name: Import sysctl tasks.
+  ansible.builtin.import_tasks: sysctl/main.yml
+
+- name: Import ssh tasks.
+  ansible.builtin.import_tasks: ssh/main.yml
+
+- name: Import packages tasks.
+  ansible.builtin.import_tasks: packages/main.yml
+
+- name: Import firewall tasks.
+  ansible.builtin.import_tasks: firewall/main.yml
+
+- name: Import fail2ban tasks.
+  ansible.builtin.import_tasks: fail2ban/main.yml
+  when: security_general_use_fail2ban

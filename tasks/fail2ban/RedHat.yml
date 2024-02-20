@@ -1,0 +1,12 @@
+---
+- name: Ensure fail2ban is installed.
+  ansible.builtin.dnf:
+    name: fail2ban
+    state: present
+    enablerepo: epel
+
+- name: Ensure fail2ban service is started and enabled.
+  ansible.builtin.service:
+    name: fail2ban
+    state: started
+    enabled: true
