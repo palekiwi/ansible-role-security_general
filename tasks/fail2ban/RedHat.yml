@@ -1,12 +1,15 @@
 ---
-- name: Ensure fail2ban is installed.
-  ansible.builtin.dnf:
-    name: fail2ban
-    state: present
-    enablerepo: epel
+- name: Install and configure fail2ban.
+  when: ansible_distribution != 'Fedora'
+  block:
+    - name: Ensure fail2ban is installed.
+      ansible.builtin.dnf:
+        name: fail2ban
+        state: present
+        enablerepo: epel
 
-- name: Ensure fail2ban service is started and enabled.
-  ansible.builtin.service:
-    name: fail2ban
-    state: started
-    enabled: true
+    - name: Ensure fail2ban service is started and enabled.
+      ansible.builtin.service:
+        name: fail2ban
+        state: started
+        enabled: true

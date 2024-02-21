@@ -1,5 +1,6 @@
 ---
 - name: Ensure essential SELinux packages are installed.
+  when: ansible_distribution != 'Fedora'
   ansible.builtin.package:
     name:
       - policycoreutils

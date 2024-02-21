@@ -1,6 +1,6 @@
 ---
 - name: Setup automatic updates.
-  when: security_general_automatic_updates
+  when: (ansible_distribution != 'Fedora') && (security_general_automatic_updates)
   block:
     - name: Install dnf-automatic for updates.
       ansible.builtin.dnf:

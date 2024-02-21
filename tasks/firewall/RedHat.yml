@@ -1,5 +1,6 @@
 ---
 - name: Ensure firewalld is installed.
+  when: ansible_distribution != 'Fedora'
   ansible.builtin.dnf:
     name: firewalld
     state: present
