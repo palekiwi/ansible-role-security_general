@@ -1,4 +1,8 @@
 ---
+# HELP default zone to set
+# TYPE string
+security_general_firewalld_default_zone: public
+
 # HELP ansible.posix.firewalld
 # TYPE []{zone: string, state: string}
 security_general_firewalld_zones: []

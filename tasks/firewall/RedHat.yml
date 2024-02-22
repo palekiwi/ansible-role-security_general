@@ -12,6 +12,12 @@
     permanent: true
   loop: "{{ security_general_firewalld_zones }}"
 
+- name: Set default zone.
+  ansible.builtin.command: firewall-cmd --set-default-zone={{ security_general_firewalld_default_zone }}
+  register: default_zone_set
+  changed_when:
+    - '"ZONE_ALREADY_SET" not in default_zone_set.stderr'
+
 - name: Ensure firewalld is started.
   ansible.builtin.service:
     name: firewalld
