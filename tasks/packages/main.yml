@@ -1,7 +1,7 @@
 ---
 - name: Remove unused packages.
   when: ansible_distribution != 'Fedora'
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name:
       - nano
       - sendmail

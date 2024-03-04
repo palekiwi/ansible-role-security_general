@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  tasks:
+    - name: "Include palekiwi.security_general"
+      ansible.builtin.include_role:
+        name: "palekiwi.security_general"
+      vars:
+        security_general_authorized_keys:
+          - user: ansible
+            key: https://github.com/palekiwi.keys

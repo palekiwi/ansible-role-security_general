@@ -22,3 +22,19 @@ security_general_firewalld_sources: []
 # HELP ansible.posix.firewalld
 # TYPE []{state: string, interface: string, zone: string}
 security_general_firewalld_interfaces: []
+
+# HELP community.general.ufw
+# TYPE []{
+#    rule: string
+#    port: int
+#    proto: string
+#    interface: string | default(omit)
+#    direction: string | default(omit)
+#    src: string | default(omit)
+# }
+security_general_ufw_ports:
+  - rule: allow
+    port: "{{ security_general_ssh_port }}"
+    proto: tcp
+    interface: eth0
+    direction: in

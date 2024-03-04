@@ -1,0 +1,27 @@
+---
+- name: Ensure ufw is installed.
+  ansible.builtin.apt:
+    name: ufw
+    state: present
+  become: true
+
+- name: Configure open ports with ufw.
+  become: true
+  community.general.ufw:
+    rule: "{{ item.rule }}"
+    port: "{{ item.port }}"
+    proto: "{{ item.proto }}"
+    interface: "{{ item.interface | default(omit) }}"
+    direction: "{{ item.direction | default(omit) }}"
+    src: "{{ item.src | default(omit) }}"
+  loop: "{{ security_general_ufw_ports }}"
+
+- name: Configure default incoming/outgoing rules with ufw.
+  become: true
+  community.general.ufw:
+    direction: "{{ item.direction }}"
+    policy: "{{ item.policy }}"
+    state: enabled
+  loop:
+    - { direction: outgoing, policy: allow }
+    - { direction: incoming, policy: deny }
